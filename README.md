@@ -1,23 +1,23 @@
 # README #
 
-Microsoft on24 webinar video downloader. This app just need the webinar link or a list of them given from an input file to download video and subtitles.
+Microsoft on24 webinar video downloader. This app just need the webinar link or a set of them, given from an input file to download video and subtitles.
 
-Please note that this script allow you to download videos from which you're allowed. You will need an URL or a set of them with microsoft refered access.
+Please note that this script allow you to download videos from which you're allowed from a Microsoft webinar invitation.
 
-Video name will include event date and webinar title, avoiding non-allowed characters for filenaming.
+Video name will include event date and webinar title, avoiding non-allowed characters for filenaming and allowing to download both video and subtitles or just subtitles.
 
 ## Requirements ##
 
-Script has been coded following python3 standards, so will be needed yo run with python 3 (check --help for more info).
+Script has been coded following python3 (check --help for more info),
 
     python3 webinar-video-downloader.py -h
 
-Rquirements python modules list can be also found on src forlder.
+Python required module list can be also found in src folder.
 
     pip3 install -r src/requirements.txt
 
 
-Also ffmpeg will be neded under your main OS, please refer to it's page for install, [ffmpeg download](https://www.ffmpeg.org/download.html). If doesn't install video and audio won't be merged in MP4 format.
+Audio and video will be merged after separated download, to allow merge you need to install ffmpeg on your runing OS, please refer to [ffmpeg download](https://www.ffmpeg.org/download.html) site to install it.
 
 
 ## LICENSE
