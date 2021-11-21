@@ -8,12 +8,15 @@ Video name will include webinar title avoiding non-allowed characters for filena
 
 ## Requirements ##
 
+Script has been coded following python3 standards, so please run with python 3 (check --help for more info).
+
+    python3 webinar-video-downloader.py -h
+
 Will be needed to install requirements list python modules.
 
     pip3 install -r src/requirements.txt
 
 Also ffmpeg will be neded under your main OS, please refer to it's page for install, [ffmpeg download](https://www.ffmpeg.org/download.html)
-
 
 
 ## LICENSE

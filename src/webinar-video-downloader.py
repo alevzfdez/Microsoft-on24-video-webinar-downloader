@@ -1,14 +1,10 @@
-#!/bin/python3
-
 
 ######################################################################################
 # 0. Set-up environment
 ######################################################################################
 import os, sys
-import argparse, requests, youtube_dl, lxml, json, unicodedata, re, ffmpeg
+import argparse, requests, youtube_dl, json, unicodedata, re
 from datetime import datetime
-from types import MemberDescriptorType
-from bs4 import BeautifulSoup
 from urllib.parse import urlparse, parse_qs
 
 
