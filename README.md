@@ -16,7 +16,7 @@ Will be needed to install requirements list python modules.
 
     pip3 install -r src/requirements.txt
 
-Also ffmpeg will be neded under your main OS, please refer to it's page for install, [ffmpeg download](https://www.ffmpeg.org/download.html)
+Also ffmpeg will be neded under your main OS, please refer to it's page for install, [ffmpeg download](https://www.ffmpeg.org/download.html). If doesn't install video and audio won't be merged in MP4 format.
 
 
 ## LICENSE
