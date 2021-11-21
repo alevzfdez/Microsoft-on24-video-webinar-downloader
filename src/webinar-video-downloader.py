@@ -50,7 +50,13 @@ def parse_url(url):
 # Scrapping some data from input url
 def webinar_scrapping(url_data):
   # Gather main body JSON data
-  url_main_body = 'https://event.on24.com/apic/utilApp/EventConsoleCachedServlet?eventId = '+url_data['eventid']+'&eventSessionId = '+url_data['sessionid']+'&eventuserid = '+url_data['eventuserid']+'&displayProfile = player&key = '+url_data['key']+'&contentType = A&useCache = true'
+  url_main_body = 'https://event.on24.com/apic/utilApp/EventConsoleCachedServlet?' + \
+    '&displayProfile = player&contentType = A&useCache = true' + \
+    'eventId = ' + url_data['eventid'] + \
+    '&eventSessionId = ' + url_data['sessionid'] + \
+    '&eventuserid = ' + url_data['eventuserid'] + \
+    '&key = ' + url_data['key']
+    
   
   req = requests.get(url_main_body)
   eventdate = datetime.strptime(json.loads(req.content)['localizedeventdate'], '%A, %B %d, %Y').strftime("%Y-%m-%d")
@@ -58,7 +64,7 @@ def webinar_scrapping(url_data):
   vtt_url = json.loads(req.content)['vttInfo'][0]['uploadurl']
   for mediaUrlInfoContent in json.loads(req.content)['mediaUrlInfo']:
     if 'mp4' in mediaUrlInfoContent['url']:
-      video_url = 'https://dashod.akamaized.net/media/cv/events/'+mediaUrlInfoContent['url'].rstrip('.mp4')+'_mpd/stream.mpd'
+      video_url = 'https://dashod.akamaized.net/media/cv/events/' + mediaUrlInfoContent['url'].rstrip('.mp4') + '_mpd/stream.mpd'
 
   # Save all required data to return
   gathered_info =  {
@@ -98,6 +104,7 @@ def dnld_video(url_data, args):
 if __name__ == '__main__':
   args = load_argparse()
   
+  # Check where one or more URLs will be parsed
   if args.url != None:
     url_in = args.url
     url_data = parse_url(url_in)
