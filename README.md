@@ -8,16 +8,29 @@ Video name will include event date and webinar title, avoiding non-allowed chara
 
 ## Requirements ##
 
-Script has been coded following python3 (check --help for more info),
+1. Install python3 and virtual environment on your system
 
-    python3 webinar-video-downloader.py -h
+       sudo apt-get install python3 virtualenv -y
+    
+2. Initialize virtual environment and install script requirements
 
-Python required modules can be installed by using file on src folder,
+       virtualenv -p python3 venv
+       . venv/bin/activate
+       pip3 install -r src/requirements.txt
+       
+3. Audio and video will be merged after separated download, to allow merge you need to install ffmpeg on your runing OS, please refer to [ffmpeg download](https://www.ffmpeg.org/download.html) site in order to install it.
 
-    pip3 install -r src/requirements.txt
+## Script ussage ##
+
+1. If only one URL wants to be downloaded (video and subtitles)
+  
+        python3 src/webinar-video-downloader.py -u <URL>
+  
+3. Download a list of URLs (video and subtitles)
+
+        python3 src/webinar-video-downloader.py -f <links list file>
 
 
-Audio and video will be merged after separated download, to allow merge you need to install ffmpeg on your runing OS, please refer to [ffmpeg download](https://www.ffmpeg.org/download.html) site in order to install it.
 
 
 ## LICENSE
