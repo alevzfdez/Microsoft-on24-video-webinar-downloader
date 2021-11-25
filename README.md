@@ -28,11 +28,11 @@ Ensure you have youre virtual environment activated
        
 - Linux:
 
-              ./venv/bin/activate
+       ./venv/bin/activate
 
 - PowerShell:
 
-              ./venv/Scripts/activate
+       ./venv/Scripts/activate
 
 
 If only one URL wants to be downloaded (video and subtitles)
