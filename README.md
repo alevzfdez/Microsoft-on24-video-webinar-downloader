@@ -8,9 +8,18 @@ Video name will include event date and webinar title, avoiding non-allowed chara
 
 ## Requirements ##
 
+#### Automatic setup ###
+
+For automatic setup, just allow run **setup.sh** .
+       
+       chmod +x setup.sh
+       ./setup.sh
+
+#### Manual setup ###
+
 1. Install python3 and virtual environment on your system
 
-       sudo apt-get install python3 virtualenv -y
+       sudo apt-get install python3 virtualenv ffmpeg -y
     
 2. Initialize virtual environment and install script requirements
 
@@ -18,11 +27,14 @@ Video name will include event date and webinar title, avoiding non-allowed chara
        . venv/bin/activate
        pip3 install -r src/requirements.txt
        
-3. Audio and video will be merged after separated download, to allow merge you need to install ffmpeg on your runing OS, please refer to [ffmpeg download](https://www.ffmpeg.org/download.html) site in order to install it.
 
 ## Script ussage ##
 
-1. If only one URL wants to be downloaded (video and subtitles)
+0. Ensure you have youre virtualenvironment activated
+
+       . venv/bin/activate
+
+2. If only one URL wants to be downloaded (video and subtitles)
   
         python3 src/webinar-video-downloader.py -u <URL>
   
