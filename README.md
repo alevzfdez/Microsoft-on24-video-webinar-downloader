@@ -24,24 +24,18 @@ For automatic setup, just allow run **setup** script. Choose between linux (Shel
 
 ## Script usage ##
 
-Ensure you have your virtual environment activated
+Ensure you have your virtual environment activated and run python script
        
 - Linux:
 
        ./venv/bin/activate
+       python3 src/webinar-video-downloader.py -h
 
 - PowerShell:
 
        ./venv/Scripts/activate
+       python src/webinar-video-downloader.py -h
 
-
-If only one URL wants to be downloaded (video and subtitles)
-  
-    python3 src/webinar-video-downloader.py -u <URL>
-  
-Download a list of URLs (video and subtitles)
-
-    python3 src/webinar-video-downloader.py -f <links list file>
 
 
 
