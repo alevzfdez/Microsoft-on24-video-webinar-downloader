@@ -22,9 +22,9 @@ For automatic setup, just allow run **setup** script. Choose between linux (Shel
        ./setup-win.ps1
        
 
-## Script ussage ##
+## Script usage ##
 
-Ensure you have youre virtual environment activated
+Ensure you have your virtual environment activated
        
 - Linux:
 
