@@ -1,5 +1,5 @@
 argparse
 requests
 youtube_dl
-datetime
+dateutil
 urllib3
