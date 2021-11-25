@@ -37,11 +37,11 @@ Ensure you have youre virtual environment activated
 
 If only one URL wants to be downloaded (video and subtitles)
   
-        python3 src/webinar-video-downloader.py -u <URL>
+    python3 src/webinar-video-downloader.py -u <URL>
   
 Download a list of URLs (video and subtitles)
 
-        python3 src/webinar-video-downloader.py -f <links list file>
+    python3 src/webinar-video-downloader.py -f <links list file>
 
 
 
