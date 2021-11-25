@@ -5,12 +5,9 @@
 # 0. Set-up environment
 ######################################################################################
 import os, sys
-import argparse, requests, youtube_dl, lxml, json, unicodedata, re, ffmpeg
-from datetime import datetime
-from types import MemberDescriptorType
-from bs4 import BeautifulSoup
-from urllib.parse import urlparse
-from urllib.parse import parse_qs
+import argparse, requests, youtube_dl, json, unicodedata, re
+from dateutil.parser import parse
+from urllib.parse import urlparse, parse_qs
 
 
 ######################################################################################
@@ -58,7 +55,8 @@ def webinar_scrapping(url_data):
   url_main_body = 'https://event.on24.com/apic/utilApp/EventConsoleCachedServlet?eventId='+url_data['eventid']+'&eventSessionId='+url_data['sessionid']+'&eventuserid='+url_data['eventuserid']+'&displayProfile=player&key='+url_data['key']+'&contentType=A&useCache=true'
   
   req = requests.get(url_main_body)
-  eventdate = datetime.strptime(json.loads(req.content)['localizedeventdate'], '%A, %B %d, %Y').strftime("%Y-%m-%d")
+  date_filter = parse(json.loads(req.content)['localizedeventdate'].replace(',',''))
+  eventdate = str(date_filter.year)+'-'+str(date_filter.month)+'-'+str(date_filter.day)
   video_filename=str(eventdate+' - '+slugify(json.loads(req.content)['description'])+'.mp4')
   vtt_url=json.loads(req.content)['vttInfo'][0]['uploadurl']
   for mediaUrlInfoContent in json.loads(req.content)['mediaUrlInfo']:
@@ -112,4 +110,3 @@ if __name__ == '__main__':
       for url in url_list.readlines():
         url_data=parse_url(str(url))
         dnld_video(url_data, args)
- 
