@@ -10,9 +10,9 @@ Video name will include event date and webinar title, avoiding non-allowed chara
 
 #### Requirements setup ###
 
-For automatic setup, just allow run **setup** script. Choose between linux (sh) or powershell (ps1).
+For automatic setup, just allow run **setup** script. Choose between linux (Shell script) or Windows (PowerShell).
        
-- Linux:
+- Shell Script:
        
        chmod +x setup-linux.sh
        ./setup-linux.sh
@@ -24,7 +24,7 @@ For automatic setup, just allow run **setup** script. Choose between linux (sh) 
 
 ## Script ussage ##
 
-Ensure you have youre virtualenvironment activated
+Ensure you have youre virtual environment activated
        
 - Linux:
 
