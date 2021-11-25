@@ -8,37 +8,38 @@ Video name will include event date and webinar title, avoiding non-allowed chara
 
 ## Requirements ##
 
-#### Automatic setup ###
+#### Requirements setup ###
 
-For automatic setup, just allow run **setup.sh** .
+For automatic setup, just allow run **setup** script. Choose between linux (sh) or powershell (ps1).
        
-       chmod +x setup.sh
-       ./setup.sh
+- Linux:
+       
+       chmod +x setup-linux.sh
+       ./setup-linux.sh
 
-#### Manual setup ###
-
-1. Install python3 and virtual environment on your system
-
-       sudo apt-get install python3 virtualenv ffmpeg -y
-    
-2. Initialize virtual environment and install script requirements
-
-       virtualenv -p python3 venv
-       . venv/bin/activate
-       pip3 install -r src/requirements.txt
+- PowerShell (open as administrator):
+       
+       ./setup-win.ps1
        
 
 ## Script ussage ##
 
-0. Ensure you have youre virtualenvironment activated
+Ensure you have youre virtualenvironment activated
+       
+- Linux:
 
-       . venv/bin/activate
+              ./venv/bin/activate
 
-2. If only one URL wants to be downloaded (video and subtitles)
+- PowerShell:
+
+              ./venv/Scripts/activate
+
+
+If only one URL wants to be downloaded (video and subtitles)
   
         python3 src/webinar-video-downloader.py -u <URL>
   
-3. Download a list of URLs (video and subtitles)
+Download a list of URLs (video and subtitles)
 
         python3 src/webinar-video-downloader.py -f <links list file>
 
