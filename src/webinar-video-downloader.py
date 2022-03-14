@@ -55,9 +55,10 @@ def webinar_scrapping(url_data):
   url_main_body = 'https://event.on24.com/apic/utilApp/EventConsoleCachedServlet?eventId='+url_data['eventid']+'&eventSessionId='+url_data['sessionid']+'&eventuserid='+url_data['eventuserid']+'&displayProfile=player&key='+url_data['key']+'&contentType=A&useCache=true'
   
   req = requests.get(url_main_body)
-  date_filter = parse(json.loads(req.content)['localizedeventdate'].replace(',',''))
-  eventdate = str(date_filter.year)+'-'+str(date_filter.month)+'-'+str(date_filter.day)
-  video_filename=str(eventdate+' - '+slugify(json.loads(req.content)['description'])+'.mp4')
+  #date_filter = parse(json.loads(req.content)['localizedeventdate'].replace(',',''))
+  #eventdate = str(date_filter.year)+'-'+str(date_filter.month)+'-'+str(date_filter.day)
+  #video_filename=str(eventdate+' - '+slugify(json.loads(req.content)['description'])+'.mp4')
+  video_filename=str(slugify(json.loads(req.content)['description'])+'.mp4')
   vtt_url=json.loads(req.content)['vttInfo'][0]['uploadurl']
   for mediaUrlInfoContent in json.loads(req.content)['mediaUrlInfo']:
     if 'mp4' in mediaUrlInfoContent['url']:
