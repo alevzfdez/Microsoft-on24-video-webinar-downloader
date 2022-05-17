@@ -59,15 +59,26 @@ def webinar_scrapping(url_data):
   #eventdate = str(date_filter.year)+'-'+str(date_filter.month)+'-'+str(date_filter.day)
   #video_filename=str(eventdate+' - '+slugify(json.loads(req.content)['description'])+'.mp4')
   video_filename=str(slugify(json.loads(req.content)['description'])+'.mp4')
+  json_out_filename=str(slugify(json.loads(req.content)['description'])+'.json')
+  ## Export JSON
+  outpath='outjson/'
+  if (os.path.exists(outpath) == False):
+    os.makedirs(outpath)
+  with open(outpath+json_out_filename, 'w') as oufile:
+    oufile.write(json.dumps(json.loads(req.content), indent=2))
+  ## Exported
   vtt_url=json.loads(req.content)['vttInfo'][0]['uploadurl']
+
   for mediaUrlInfoContent in json.loads(req.content)['mediaUrlInfo']:
     if 'mp4' in mediaUrlInfoContent['url']:
-      video_url='https://dashod.akamaized.net/media/cv/events/'+mediaUrlInfoContent['url'].rstrip('.mp4')+'_mpd/stream.mpd'
+      video_url_1='https://dashod.akamaized.net/media/cv/events/'+mediaUrlInfoContent['sourcefilename'].rstrip('.mp4')+'_mpd/stream.mpd'
+      video_url_2='https://dashod.akamaized.net/media/cv/events/'+mediaUrlInfoContent['sourcefilename'].rstrip('.mp4')+'_segments/stream.mpd'
 
   # Save all required data to return
   gathered_info= {
     'video_title': video_filename,
-    'url_mpd': video_url,
+    'url_mpd_1': video_url_1,
+    'url_mpd_2': video_url_2,
     'url_vtt': vtt_url
   }
 
@@ -87,7 +98,10 @@ def dnld_video(url_data, args):
         'outtmpl': gathered_info['video_title']
     }
     with youtube_dl.YoutubeDL(ydl_opts) as ydl:
-      ydl.download([gathered_info['url_mpd']])
+      try:
+        ydl.download([gathered_info['url_mpd_1']])
+      except:
+        ydl.download([gathered_info['url_mpd_2']])
   
 
   req = requests.get(gathered_info['url_vtt'])
@@ -105,9 +119,15 @@ if __name__ == '__main__':
   if args.url != None:
     url_in=args.url
     url_data=parse_url(url_in)
-    dnld_video(url_data, args)
+    try:
+      dnld_video(url_data, args)
+    except:
+      pass
   else:
     with open(args.file, 'rb') as url_list:
       for url in url_list.readlines():
         url_data=parse_url(str(url))
-        dnld_video(url_data, args)
+        try:
+          dnld_video(url_data, args)
+        except:
+          pass
