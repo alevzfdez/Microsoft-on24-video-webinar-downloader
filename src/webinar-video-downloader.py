@@ -41,10 +41,10 @@ def slugify(value, allow_unicode=False):
 def parse_url(url):
   parsed_url=urlparse(re.escape(url))
   url_data={
-    'eventid':parse_qs(parsed_url.query)['eventid'][0].rstrip('\\'),
-    'sessionid':parse_qs(parsed_url.query)['sessionid'][0].rstrip('\\'),
-    'key':parse_qs(parsed_url.query)['key'][0].rstrip('\\'),
-    'eventuserid':parse_qs(parsed_url.query)['eventuserid'][0].rstrip('\\')
+    'eventid':parse_qs(parsed_url.query)['eventid'][0].split('\\')[0],
+    'sessionid':parse_qs(parsed_url.query)['sessionid'][0].split('\\')[0],
+    'key':parse_qs(parsed_url.query)['key'][0].split('\\')[0],
+    'eventuserid':parse_qs(parsed_url.query)['eventuserid'][0].split('\\')[0]
   }
   
   return url_data
@@ -71,8 +71,8 @@ def webinar_scrapping(url_data):
 
   for mediaUrlInfoContent in json.loads(req.content)['mediaUrlInfo']:
     if 'mp4' in mediaUrlInfoContent['url']:
-      video_url_1='https://dashod.akamaized.net/media/cv/events/'+mediaUrlInfoContent['sourcefilename'].rstrip('.mp4')+'_mpd/stream.mpd'
-      video_url_2='https://dashod.akamaized.net/media/cv/events/'+mediaUrlInfoContent['sourcefilename'].rstrip('.mp4')+'_segments/stream.mpd'
+      video_url_1='https://dashod.akamaized.net/media/cv/events/'+mediaUrlInfoContent['url'].split('.mp4')[0]+'_mpd/stream.mpd'
+      video_url_2='https://dashod.akamaized.net/media/cv/events/'+mediaUrlInfoContent['url'].split('.mp4')[0]+'_segments/stream.mpd'
 
   # Save all required data to return
   gathered_info= {
@@ -105,7 +105,7 @@ def dnld_video(url_data, args):
   
 
   req = requests.get(gathered_info['url_vtt'])
-  open(gathered_info['video_title'].rstrip('.mp4')+'.vtt', 'wb').write(req.content)
+  open(gathered_info['video_title'].split('.mp4')[0]+'.vtt', 'wb').write(req.content)
   
   return
 
